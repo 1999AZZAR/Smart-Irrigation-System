@@ -5,6 +5,7 @@ This Arduino sketch enables you to monitor sensor data (temperature, humidity, s
 ### Prerequisites
 
 - ESP8266-based board (e.g., NodeMCU)
+- AVR-based board (e.g., Arduino UNO)
 - Dual relay module
 - Capacitive soil moisture sensor
 - Analog rain sensor (resistance-based)
@@ -38,36 +39,68 @@ This Arduino sketch enables you to monitor sensor data (temperature, humidity, s
 ```mermaid
 graph TD
 
-subgraph main
+subgraph Arduino
 A[Start] --> B[Setup]
-B --> C[Connect to Blynk]
-C --> D[Main Loop]
-D --> E[Check Button]
-D --> F[Check Sensor Data]
-F --> G[Read Temperature and Humidity]
-G --> I[Check Sensor Reading Errors]
-F --> H[Read Soil Moisture and Rain Sensor]
-H --> I
-I -- Error --> J[Handle Error]
-I -- No Error --> K[Convert Analog Readings to 0-100 Scale]
-K --> L[Create JSON Data]
-L --> M[Send JSON Data to Blynk]
-M --> D
+B --> C[Main Loop]
+C --> D[Check Button]
+C --> E[Check Sensor Data]
+E --> F[Read Temperature and Humidity]
+F --> H[Check Sensor Reading Errors]
+E --> G[Read Soil Moisture and Rain Sensor]
+G --> H
+H -- Error --> I[Handle Error]
+H -- No Error --> J[Convert Analog Readings to 0-100 Scale]
+J --> K[Create JSON Data]
+K --> L[Send JSON Data over Serial]
+L --> op9((ESP8266: Read Data))
+end
+
+subgraph ESP8266
+op9 --> op10[Check if data available from Arduino Uno]
+cond1[Data available?]
+op10 --> cond1
+cond1 -- Yes --> op11[Read data from Arduino Uno]
+op11 --> op12[Parse JSON data]
+cond1 -- No --> op13[End]
+op12 --> op14[Check parsing error]
+cond2[Error occurred?]
+op14 --> cond2
+cond2 -- Yes --> op15[Print error message]
+cond2 -- No --> op16[Retrieve sensor values]
+op16 --> op17[Update Blynk virtual pins]
+op15 --> op13
+op17 --> op13
+op13 --> op8((Main Loop))
+end
+
+subgraph Relay Control
+op19[Relay write event] --> op18[relay status]
+op19 --> op17
 end
 
 subgraph Button
-E -- Pressed --> N[Activate Actuator]
-E -- Released --> O[Deactivate Actuator]
-N --> P[Actuator Status]
-O --> P
-P --> D
+D -- pressed --> M[Activate Actuator]
+D -- released --> N[Deactivate Actuator]
+M --> O[Actuator Status]
+N --> O
+O --> C
 end
 
-subgraph Blynk
-M -- Receive --> Q[Process Sensor Data]
-Q --> R[Extract Temperature, Humidity, Soil Moisture, and Rain]
-R --> S[Update Blynk Virtual Pins]
+subgraph Blynk Connection
+op20[Blynk connected event] --> op21[Blynk syncAll]
+op21 --> op8
 end
+
+subgraph Default Write Event
+op22[Default write event] --> op8
+end
+
+subgraph End
+e((End))
+end
+
+op18 --> D
+op8 --> e
 ```
 
 ### Customization
