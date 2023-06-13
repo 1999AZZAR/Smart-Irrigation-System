@@ -79,9 +79,7 @@ The code performs the following functions:
 
 - If manual watering is active, bypasses the conditions and keeps the actuator activated.
 - Otherwise, checks the following conditions:
-  - If the soil
-
- moisture is below 40 and no rain is detected, activates the actuator.
+  - If the soil moisture is below 40 and no rain is detected, activates the actuator.
   - If the humidity is below 50 and the temperature is above 30, activates the actuator.
   - If the soil moisture is equal to or above 75 or rain is detected, deactivates the actuator.
 
