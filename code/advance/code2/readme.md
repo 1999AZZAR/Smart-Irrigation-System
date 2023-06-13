@@ -56,25 +56,79 @@ Ensure that you have the required hardware components properly connected to the 
 ## Flowchart
 
 ```mermaid
-graph TD
+flowchart TD
+    subgraph Initialization
+        st((Start))
+        op1[Define BLYNK_TEMPLATE_ID, BLYNK_DEVICE_NAME, BLYNK_AUTH_TOKEN]
+        op2[Include Blynk, SoftwareSerial, ArduinoJson libraries]
+        op3[Define variables auth, ssid, pass, arduinoRxPin, arduinoTxPin]
+        op4[Define relay pins]
+        op5[Setup serial communication]
+        op6[Initialize Blynk]
+    end
 
-A[Start] --> B[Setup]
-B --> C[Main Loop]
-C --> D[Run Blynk]
-D --> E[Handle Widget Events]
-E --> F[Check Button State]
-F -- Button Pressed --> G[Activate Relay]
-F -- Button Released --> H[Deactivate Relay]
-E --> I[Handle Sensor Data]
-I -- Parse Error --> J[Print Parsing Error]
-I -- No Parse Error --> K[Extract Sensor Data]
-K --> L[Update Temperature Widget]
-K --> M[Update Humidity Widget]
-K --> N[Update Soil Moisture Widget]
-K --> O[Update Rain Sensor Widget]
-C --> P[Check Connection]
-P --> Q[Sync All Widgets]
-Q --> C
+    st --> op1 --> op2 --> op3 --> op4 --> op5 --> op6
+
+    subgraph Main Loop
+        op7[Run Blynk]
+        op8[Process Sensor Data]
+        op7 --> op8
+        op8 --> op7
+    end
+
+    op6 --> op7
+
+    subgraph Process Sensor Data
+        op9[Check if data available from Arduino Uno]
+        cond1[Data available?]
+        op9 --> cond1
+        cond1 -- Yes --> op10[Read data from Arduino Uno]
+        op10 --> op11[Parse JSON data]
+        cond1 -- No --> op12[End]
+        op11 --> op13[Check parsing error]
+        cond2[Error occurred?]
+        op13 --> cond2
+        cond2 -- Yes --> op14[Print error message]
+        cond2 -- No --> op15[Retrieve sensor values]
+        op15 --> op16[Update Blynk virtual pins]
+        op14 --> op12
+        op16 --> op12
+        op12 --> op8
+    end
+
+    subgraph Relay Control
+        op17[Relay control function]
+        op18[Relay V4 write event]
+        op19[Relay V5 write event]
+        op17 --> op18
+        op17 --> op19
+    end
+
+    op18 --> op17
+    op19 --> op17
+
+    subgraph Blynk Connection
+        op20[Blynk connected event]
+        op21[Blynk syncAll]
+        op20 --> op21
+        op21 --> op8
+    end
+
+    op6 --> op20
+
+    subgraph Default Write Event
+        op22[Default write event]
+        op22 --> op8
+    end
+
+    op8 --> op22
+    op22 --> op8
+
+    subgraph End
+        e((End))
+    end
+
+    op12 --> e
 ```
 
 ## Customization
