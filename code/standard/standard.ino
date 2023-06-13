@@ -34,8 +34,10 @@ void loop() {
 void checkSensors() {
   float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
-  int soilMoisture = analogRead(soilMoisturePin);
-  int rainSensor = analogRead(rainSensorPin);
+  int RsoilMoisture = analogRead(soilMoisturePin);
+  int soilMoisture = map(RsoilMoisture,0,1023,0,100);
+  int RrainSensor = analogRead(rainSensorPin);
+  int rainSensor = map(RrainSensor,0,1023,0,100);
 
   if (isnan(temperature) || isnan(humidity)) {
     Serial.println("Error: Failed to read temperature and humidity from DHT11 sensor");
