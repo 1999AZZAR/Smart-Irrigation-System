@@ -16,11 +16,17 @@ This Arduino sketch enables you to monitor sensor data (temperature, humidity, s
 
 ### Installation
 
-1. Install the Arduino IDE on your computer.
+for the AVR board:
+
+1. open the Arduino IDE on your computer.
+2. Connect the AVR board to your computer using a USB cable.
+3. follow the step ![here](https://github.cpm/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code1/readme.md).
+
+for the ESP8266 board:
+
+1. open the Arduino IDE on your computer.
 2. Connect the ESP8266 board to your computer using a USB cable.
-3. Install the necessary libraries: Blynk library, ArduinoJson library.
-4. Open the Arduino sketch file (`sensor_data_monitoring.ino`) in the Arduino IDE.
-5. Customize the sketch by replacing the placeholders with your Blynk project information and Wi-Fi credentials.
+3. follow the step ![here](https://github.decomv/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code2/readme.md).
 
 ### Usage
 
