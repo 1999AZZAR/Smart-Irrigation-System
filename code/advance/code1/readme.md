@@ -89,5 +89,3 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use, mod
 - The code makes use of the following libraries:
   - DHT sensor library: [https://github.com/adafruit/DHT-sensor-library](https://github.com/adafruit/DHT-sensor-library)
   - ArduinoJson library: [https://arduinojson.org/](https://arduinojson.org/)
-
-Feel free to update the README file with additional information or sections as needed.
