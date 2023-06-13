@@ -1,40 +1,59 @@
 # Code2
 
-This Arduino sketch enables you to monitor sensor data (temperature, humidity, soil moisture, and rain) using Blynk, an IoT platform, and control an actuator (relay) remotely. The sketch receives JSON data over the Blynk server and uploads the sensor values to specific virtual pins. The actuator control is replaced by a virtual pin on the Blynk app.
+This project allows you to monitor sensor data from an Arduino Uno using an ESP8266 board and display the data on the Blynk mobile app. The ESP8266 board acts as a bridge between the Arduino Uno and the Blynk server, enabling wireless communication.
+
+The code provided establishes a connection with the Blynk server, reads JSON data sent by the Arduino Uno, and updates the sensor values on the Blynk app. It also includes relay control functionality to control external devices based on Blynk app inputs.
 
 ## Prerequisites
 
-Before running the code, make sure you have the following:
+To use this code, you need the following components:
 
-- Blynk template ID: Replace `<your_template_id>` in the code with your Blynk template ID.
-- Blynk device name: Replace `<your_device_name>` in the code with your Blynk device name.
-- Blynk authentication token: Replace `<your_auth_token>` in the code with your Blynk authentication token.
-- Wi-Fi credentials: Replace `<your_wifi_ssid>` and `<your_wifi_password>` in the code with your Wi-Fi network SSID and password, respectively.
+- ESP8266 board (e.g., NodeMCU)
+- Arduino Uno
+- Sensors compatible with the Arduino Uno (e.g., temperature, humidity, soil moisture, rain sensor)
+- Blynk mobile app (available for iOS and Android)
+- Arduino IDE
 
-Additionally, you will need the following components:
+## Wiring
 
-- ESP8266-based board (e.g., NodeMCU)
-- Dual relay module
-- Capacitive soil moisture sensor
-- Analog rain sensor (resistance-based)
-- DHT11 temperature and humidity sensor
-- Push button (optional, replaced by virtual pin V4)
-- Jumper wires
-- Breadboard (optional)
-- Blynk mobile app (iOS or Android)
+Connect the ESP8266 and Arduino Uno as follows:
 
-Ensure that you have the required hardware components properly connected to the ESP8266 board before uploading the sketch.
+- ESP8266 Tx pin (GPIO2) to Arduino Uno Rx pin
+- ESP8266 Rx pin (GPIO3) to Arduino Uno Tx pin
+- ESP8266 ground to Arduino Uno ground
+- Connect the sensors to the appropriate pins on the Arduino Uno
 
 ## Installation
 
-1. Install the Arduino IDE on your computer.
-2. Connect the ESP8266 board to your computer using a USB cable.
-3. Open the Arduino IDE and install the necessary libraries:
-   - Blynk library
-   - ArduinoJson library
-4. Open the Arduino sketch file (`sensor_data_monitoring.ino`) in the Arduino IDE.
-5. Customize the sketch by replacing the placeholders with your Blynk project information, Wi-Fi credentials, and relay control implementation.
-6. Click on the "Upload" button to compile and upload the sketch to the ESP8266 board.
+1. Install the Arduino IDE from the official website: https://www.arduino.cc/en/software
+
+2. Open the Arduino IDE and install the required libraries:
+
+   - Blynk Library: Sketch -> Include Library -> Manage Libraries. Search for "Blynk" and click the "Install" button.
+   - ArduinoJson Library: Sketch -> Include Library -> Manage Libraries. Search for "ArduinoJson" and click the "Install" button.
+   - SoftwareSerial Library: Sketch -> Include Library -> Manage Libraries. Search for "SoftwareSerial" and click the "Install" button.
+
+3. Download or copy the provided code into a new sketch in the Arduino IDE.
+
+4. Modify the code:
+
+   - Replace `<your_template_id>` with the Blynk template ID.
+   - Replace `<your_device_name>` with the desired device name.
+   - Replace `<your_auth_token>` with the Blynk authentication token.
+   - Replace `<your_wifi_ssid>` with your Wi-Fi network name (SSID).
+   - Replace `<your_wifi_password>` with your Wi-Fi network password.
+
+5. Upload the code to the ESP8266 board by selecting the board type and port in the Arduino IDE and clicking the "Upload" button.
+
+6. Open the Blynk mobile app, create a new project, and associate it with the previously defined template ID.
+
+7. Add the necessary widgets to the Blynk project to display the sensor data and control the relays (if needed).
+
+8. Run the Blynk project on your mobile device.
+
+9. Power on the Arduino Uno and ESP8266 board.
+
+10. You should see the sensor data being displayed on the Blynk app, and you can control the relays through the corresponding widgets.
 
 ## Usage
 
@@ -136,18 +155,19 @@ flowchart TD
 You can customize the sketch to fit your specific requirements:
 
 - Modify the virtual pins and their corresponding widgets in the Blynk app to match your project setup.
-- Replace the `activateRelay()` and `deactivateRelay()` functions with your own relay control implementation.
-- Extend the sketch to include additional sensors or actuators based on your project
-
- needs.
+- Extend the sketch to include additional sensors or actuators based on your project needs.
+- If you have different pin assignments for the relay modules, modify the `RELAY_PIN` array in the code to match your configuration.
+- Adjust the baud rate in the code (`9600` by default) if your Arduino Uno is using a different baud rate.
 
 ## Troubleshooting
 
 If you encounter any issues or errors while running the code, make sure to double-check the following:
 
-- Verify that the Wi-Fi credentials (SSID and password) are correct.
 - Ensure that the Blynk template ID, device name, and authentication token are properly configured.
 - Check your hardware connections and ensure they are wired correctly.
+- If you encounter issues with serial communication, ensure that the connections between the ESP8266 and Arduino Uno are correct and secure.
+- Double-check the Wi-Fi credentials (SSID and password) to ensure they are entered correctly.
+- Verify that the Blynk authentication token is accurate and corresponds to your Blynk project.
 
 If you're still facing issues, refer to the documentation of the libraries used or consult the Blynk community for further assistance.
 
