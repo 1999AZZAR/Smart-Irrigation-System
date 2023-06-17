@@ -2,6 +2,9 @@
 
 This repository contains the code implementation for a smart irrigation system using an Arduino board and various sensors. The system automatically controls the actuator to water plants based on predefined conditions such as temperature, humidity, soil moisture, and rain sensor readings. It also allows manual watering through a push button and provides remote control using the Blynk IoT platform.
 
+translation:
+- [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/readme_id.md)
+
 ## Hardware Requirements
 
 To build and run the smart irrigation system, you will need the following hardware components:
