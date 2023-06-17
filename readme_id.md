@@ -2,6 +2,10 @@
 
 Kode ini mengimplementasikan sebuah sistem irigasi cerdas menggunakan papan Arduino dan berbagai sensor. Sistem ini secara otomatis mengontrol aktuator untuk menyiram tanaman berdasarkan kondisi yang telah ditentukan, seperti suhu, kelembaban, kelembapan tanah, dan pembacaan sensor hujan. Sistem juga memungkinkan penyiraman manual melalui tombol tekan dan menyediakan kontrol jarak jauh menggunakan platform IoT Blynk.
 
+versi:
+- [standar](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/standard/readme_id.md)
+- [lanjutan](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/readme_id.md)
+
 ## Persyaratan Hardware
 
 - Papan Arduino
