@@ -1,8 +1,10 @@
 # Smart Irrigation System
 
-This code implements a smart irrigation system using an Arduino board and various sensors. The system automatically controls the actuator to water plants based on predefined conditions such as temperature, humidity, soil moisture, and rain sensor readings. It also allows manual watering through a push button and provides remote control using the Blynk IoT platform.
+This repository contains the code implementation for a smart irrigation system using an Arduino board and various sensors. The system automatically controls the actuator to water plants based on predefined conditions such as temperature, humidity, soil moisture, and rain sensor readings. It also allows manual watering through a push button and provides remote control using the Blynk IoT platform.
 
 ## Hardware Requirements
+
+To build and run the smart irrigation system, you will need the following hardware components:
 
 - Arduino board
 - DHT11 temperature and humidity sensor
@@ -17,17 +19,15 @@ This code implements a smart irrigation system using an Arduino board and variou
 
 ## Software Dependencies
 
-This code relies on the following libraries:
+The code relies on the following libraries. Make sure they are installed in your Arduino IDE before uploading the code to the Arduino board:
 
 - DHT library: This library provides functions to read temperature and humidity from the DHT11 sensor.
 - Blynk library (for advanced version)
 - ArduinoJson library (for advanced version)
 
-Ensure that these libraries are properly installed in your Arduino IDE before uploading the code to the Arduino board.
-
 ## Pin Configuration
 
-For the standard version:
+For the standard version, make the following connections:
 
 - DHT11 sensor: Connect the sensor data pin to digital pin 2 (DHTPIN).
 - Soil moisture sensor: Connect the sensor output pin to analog pin A0 (soilMoisturePin).
@@ -35,7 +35,7 @@ For the standard version:
 - Relay module: Connect the relay control pin to digital pin 9 (relayPin).
 - Push button: Connect one end of the button to digital pin 3 (buttonPin), and the other end to ground.
 
-For the advanced version:
+For the advanced version, make the following connections:
 
 - DHT11 sensor: Connect the sensor data pin to digital pin 2 (DHTPIN).
 - Soil moisture sensor: Connect the sensor output pin to analog pin A0 (soilMoisturePin).
@@ -47,7 +47,7 @@ Please ensure that you have made the necessary hardware connections before runni
 
 ## Functionality
 
-The code performs the following functions:
+The code provides the following functionality:
 
 ### Setup
 
@@ -77,7 +77,9 @@ The code performs the following functions:
 
 ### Watering Conditions Checking
 
-- If manual watering is active, bypasses the conditions and keeps the actuator activated.
+- If manual watering
+
+ is active, bypasses the conditions and keeps the actuator activated.
 - Otherwise, checks the following conditions:
   - If the soil moisture is below 40 and no rain is detected, activates the actuator.
   - If the humidity is below 50 and the temperature is above 30, activates the actuator.
@@ -92,6 +94,8 @@ The code performs the following functions:
 
 ## Usage
 
+Follow these steps to use the smart irrigation system:
+
 1. Make the necessary hardware connections as described in the "Pin Configuration" section.
 2. Install the required libraries in your Arduino IDE.
 3. Upload the code to your Arduino board.
@@ -104,9 +108,11 @@ The code performs the following functions:
 10. Sensor data will be displayed on the corresponding virtual pins (V0 to V3) (for advanced version).
 11. Use virtual pin V4 on the Blynk app to control the actuator (relay) remotely (for advanced version).
 
-Ensure that the Arduino board (for standard version) or ESP8266 board (for advanced version) is properly powered and connected to your computer.
+Make sure that the Arduino board (for standard version) or ESP8266 board (for advanced version) is properly powered and connected to your computer.
 
 ## Flowchart
+
+The flowchart below illustrates the logic of the smart irrigation system:
 
 ```mermaid
 graph TD
@@ -134,7 +140,9 @@ P --> D
 
 ## Troubleshooting
 
-- If you encounter any errors while reading the sensor data, check the connections and ensure that the sensors are functioning correctly.
+If you encounter any issues while using the smart irrigation system, consider the following troubleshooting steps:
+
+- If you encounter errors while reading the sensor data, check the connections and ensure that the sensors are functioning correctly.
 - If the actuator is not activating or deactivating as expected (for standard version), verify the relay module's connections and ensure that it is compatible with the actuator.
 - For troubleshooting the advanced version, refer to the Blynk documentation and community resources.
 
@@ -142,9 +150,7 @@ P --> D
 
 You can customize the watering conditions by modifying the logic in the `checkWateringConditions()` function. Adjust the threshold values and conditions according to your specific requirements.
 
-You can also modify the pin assignments and sensor types by changing the corresponding
-
- constants at the beginning of the code.
+You can also modify the pin assignments and sensor types by changing the corresponding constants at the beginning of the code.
 
 For the advanced version, you can modify the virtual pins and widgets in the Blynk app to match your project setup. Replace the relay control functions with your own implementation if needed. Extend the sketch to include additional sensors or actuators as needed.
 
@@ -156,4 +162,6 @@ This code is provided as a starting point and may require modifications and enha
 
 ## License
 
-This code is released under the [MIT License](https://opensource.org/licenses/MIT). Feel free to modify and use it for your projects.
+This code is released under the
+
+ [MIT License](https://opensource.org/licenses/MIT). Feel free to modify and use it for your projects.
