@@ -50,7 +50,7 @@ void checkButton() {
 
 void checkSensorData() {
   float temperature, humidity;
-  int soilMoisture, rainSensor;
+  float soilMoisture, rainSensor;
 
   // Read temperature and humidity
   temperature = dht.readTemperature();
