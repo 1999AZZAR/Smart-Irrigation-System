@@ -26,7 +26,7 @@ untuk papan ESP8266:
 
 1. Buka Arduino IDE di komputer Anda.
 2. Hubungkan papan ESP8266 ke komputer Anda menggunakan kabel USB.
-3. Ikuti langkah-langkah [di sini](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code2/readme_id.md).
+3. Ikuti langkah-langkah [di sini](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code2/blynk/readme_id.md).
 
 ### Penggunaan
 
