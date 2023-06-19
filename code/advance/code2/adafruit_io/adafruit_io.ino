@@ -46,6 +46,7 @@ void loop() {
 
   mqtt.processPackets(200);
   mqtt.ping();
+  onRelay2Change(); // Check for relay state changes
 }
 
 void connectToWiFi() {
