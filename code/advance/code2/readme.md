@@ -4,6 +4,9 @@ This project allows you to monitor sensor data from an Arduino Uno using an ESP8
 
 The code provided establishes a connection with the Blynk server, reads JSON data sent by the Arduino Uno, and updates the sensor values on the Blynk app. It also includes relay control functionality to control external devices based on Blynk app inputs.
 
+translation:
+- [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code2/readme_id.md)
+
 ## Prerequisites
 
 To use this code, you need the following components:
