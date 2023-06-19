@@ -2,6 +2,9 @@
 
 This Arduino project allows you to control a dual relay module using three sensors (soil moisture, rain sensor, and DHT11) and one button input. The code is designed to run on an Arduino Uno and incorporates the necessary libraries and principles to ensure reliability and efficiency.
 
+translation:
+- [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code1/readme_id.md)
+
 ## Prerequisites
 
 To run this code, you will need the following components:
