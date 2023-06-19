@@ -29,7 +29,10 @@ for the ESP8266 board:
 
 1. open the Arduino IDE on your computer.
 2. Connect the ESP8266 board to your computer using a USB cable.
-3. follow the step [here](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code2/readme.md).
+3. follow the step here:
+
+- [using blynk](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code2/blynk/readme.md).
+- [using adafruit](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code2/adafruit_io/readme.md)
 
 ### Usage
 
