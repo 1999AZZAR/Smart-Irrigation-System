@@ -107,9 +107,7 @@ Button()`.
 7. Unggah sketch ke papan ESP8266 (untuk versi lanjutan).
 8. Nyalakan papan dan pastikan terhubung ke jaringan Wi-Fi (untuk versi lanjutan).
 9. Buka aplikasi Blynk di ponsel dan navigasikan ke proyek Anda (untuk versi lanjutan).
-10. Data sensor akan ditampilkan pada pin virtual yang sesuai (V0 hingga
-
- V3) (untuk versi lanjutan).
+10. Data sensor akan ditampilkan pada pin virtual yang sesuai (V0 hingga V3) (untuk versi lanjutan).
 11. Gunakan pin virtual V4 di aplikasi Blynk untuk mengontrol aktuator (relay) secara jarak jauh (untuk versi lanjutan).
 
 Pastikan papan Arduino (untuk versi standar) atau papan ESP8266 (untuk versi lanjutan) memiliki pasokan daya yang tepat dan terhubung dengan komputer Anda.
@@ -158,6 +156,4 @@ Untuk versi lanjutan, Anda dapat memodifikasi pin virtual dan widget di aplikasi
 
 Kode ini diasumsikan menggunakan sensor DHT11 untuk suhu dan kelembaban, dan sensor analog untuk kelembapan tanah dan deteksi hujan (untuk versi standar). Jika Anda menggunakan sensor yang berbeda, pastikan untuk memodifikasi kode sesuai dan menggunakan library dan konfigurasi pin yang sesuai.
 
-Kode ini disediakan sebagai titik awal dan mungkin memerlukan modifikasi dan perbaikan untuk sesuai dengan aplikasi dan lingk
-
-ungan spesifik Anda.
+Kode ini disediakan sebagai titik awal dan mungkin memerlukan modifikasi dan perbaikan untuk sesuai dengan aplikasi dan lingkungan spesifik Anda.
