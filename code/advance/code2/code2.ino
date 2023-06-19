@@ -55,8 +55,8 @@ void deserializeAndPublish(const String& jsonStr) {
 
   float temperature = jsonDoc["temperature"].as<float>();
   float humidity = jsonDoc["humidity"].as<float>();
-  int soilMoisture = jsonDoc["soil_moisture"].as<int>(); // Changed to int
-  int rainSensor = jsonDoc["rain_sensor"].as<int>(); // Changed to int
+  float soilMoisture = jsonDoc["soil_moisture"].as<int>(); 
+  float rainSensor = jsonDoc["rain_sensor"].as<int>();
 
   Blynk.virtualWrite(V0, temperature);
   Blynk.virtualWrite(V1, humidity);
