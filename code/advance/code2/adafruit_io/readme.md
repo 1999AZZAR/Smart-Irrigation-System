@@ -56,6 +56,23 @@ graph TD
   Q --> K
   B --> |Failure| R[Delay]
   R --> B
+
+  subgraph Relay State Changes
+    A2[Check subscription]
+    B2[Is bt1 subscription?]
+    C2[Get bt1 value]
+    D2[Set relay1 state]
+    E2[Is bt2 subscription?]
+    F2[Get bt2 value]
+    G2[Set relay2 state]
+    H2[Loop back]
+  end
+
+  G --> A2
+  A2 --> B2
+  B2 -- Yes --> C2 --> D2 --> H2
+  B2 -- No --> E2 --> F2 --> G2 --> H2
+  E2 --> F2 --> G2 --> H2
 ```
 
 ## Customization
