@@ -11,15 +11,20 @@ void loop() {
   int rainSensor = random(0, 101);
 
   // Create JSON data
-  StaticJsonDocument<128> jsonDoc;
-  jsonDoc["temperature"] = temperature;
-  jsonDoc["humidity"] = humidity;
-  jsonDoc["soil_moisture"] = soilMoisture;
-  jsonDoc["rain_sensor"] = rainSensor;
+  DynamicJsonDocument jsonDoc(256);
 
-  // Send JSON data over serial
-  serializeJson(jsonDoc, Serial);
-  Serial.println();
+  // Populate the JSON document
+  jsonDoc["temperature"] = String(temperature);
+  jsonDoc["humidity"] = String(humidity);
+  jsonDoc["soil_moisture"] = String(soilMoisture);
+  jsonDoc["rain_sensor"] = String(rainSensor);
 
-  delay(1000); // Delay between each reading
+  // Serialize the JSON document to a string
+  String jsonString;
+  serializeJson(jsonDoc, jsonString);
+
+  // Send the JSON data over serial
+  Serial.println(jsonString);
+
+  delay(2500); // Delay between each reading
 }
