@@ -11,63 +11,67 @@ char ssid[] = "<your_wifi_ssid>";
 char pass[] = "<your_wifi_password>";
 
 // SoftwareSerial pins for communication with Arduino Uno
-const byte arduinoRxPin = 2;  // ESP8266 Tx pin
-const byte arduinoTxPin = 3;  // ESP8266 Rx pin
-SoftwareSerial arduinoSerial(arduinoRxPin, arduinoTxPin);
+#define SOFT_SERIAL_RX_PIN D2
+#define SOFT_SERIAL_TX_PIN D3
 
-const int RELAY_PIN[] = {16, 5};
+SoftwareSerial softSerial(SOFT_SERIAL_RX_PIN, SOFT_SERIAL_TX_PIN);  // RX, TX
+
+const int RELAY_PIN[] = {14, 12};
+
+BlynkTimer timer;
 
 void setup() {
-  Serial.begin(9600);
-  arduinoSerial.begin(9600);  // Start software serial communication with Arduino Uno
+  for (int i = 0; i < 2; i++) {
+    pinMode(RELAY_PIN[i], OUTPUT);
+  }
+  timer.setInterval(1000L, sensorDataSend); //timer will run every sec
+  Serial.begin(115200);
+  softSerial.begin(9600);  // Start software serial communication with Arduino Uno
   Blynk.begin(auth, ssid, pass);
 }
 
 void loop() {
   Blynk.run();
-  processSensorData();
+  timer.run();
 }
 
-void processSensorData() {
-  if (arduinoSerial.available()) {
-    StaticJsonDocument<128> jsonDoc;
-    DeserializationError error;
-
-    // Read data from Arduino Uno
-    String arduinoData = arduinoSerial.readStringUntil('\n');
-    
-    error = deserializeJson(jsonDoc, arduinoData);
-
-    if (error) {
-      Serial.print("JSON parsing error: ");
-      Serial.println(error.c_str());
-      return;
-    }
-
-    float temperature = jsonDoc["temperature"];
-    float humidity = jsonDoc["humidity"];
-    int soilMoisture = jsonDoc["soil_moisture"];
-    int rainSensor = jsonDoc["rain_sensor"];
-
-    Blynk.virtualWrite(V0, temperature);
-    Blynk.virtualWrite(V1, humidity);
-    Blynk.virtualWrite(V2, soilMoisture);
-    Blynk.virtualWrite(V3, rainSensor);
+void sensorDataSend() {
+  if (softSerial.available()) {
+    String jsonStr = softSerial.readStringUntil('\n'); // Read JSON data from Arduino
+    deserializeAndPublish(jsonStr);
+    Serial.println(jsonStr);
   }
+}
+
+void deserializeAndPublish(const String& jsonStr) {
+  DynamicJsonDocument jsonDoc(256);
+  DeserializationError error = deserializeJson(jsonDoc, jsonStr);
+
+  if (error) {
+    Serial.print("deserializeJson() failed: ");
+    Serial.println(error.c_str());
+    return;
+  }
+
+  float temperature = jsonDoc["temperature"].as<float>();
+  float humidity = jsonDoc["humidity"].as<float>();
+  int soilMoisture = jsonDoc["soil_moisture"].as<int>(); // Changed to int
+  int rainSensor = jsonDoc["rain_sensor"].as<int>(); // Changed to int
+
+  Blynk.virtualWrite(V0, temperature);
+  Blynk.virtualWrite(V1, humidity);
+  Blynk.virtualWrite(V2, soilMoisture);
+  Blynk.virtualWrite(V3, rainSensor);
 }
 
 void relaySwitch(int index, int pinValue) {
   digitalWrite(RELAY_PIN[index], pinValue);
 }
 
-BLYNK_WRITE(V4) { relaySwitch(0, param.asInt()); }
-BLYNK_WRITE(V5) { relaySwitch(1, param.asInt()); } 
-
-BLYNK_CONNECTED() {
-  Blynk.syncAll();
+BLYNK_WRITE(V4) {
+  relaySwitch(0, param.asInt());
 }
 
-BLYNK_WRITE_DEFAULT() {
-  // This function is not used in this code, but you can keep it for future use
-  // You can add your own implementation if needed
+BLYNK_WRITE(V5) {
+  relaySwitch(1, param.asInt());
 }
