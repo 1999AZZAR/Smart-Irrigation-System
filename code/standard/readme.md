@@ -2,6 +2,10 @@
 
 This code implements a smart irrigation system using an Arduino board and various sensors. The system automatically controls the actuator to water plants based on predefined conditions such as temperature, humidity, soil moisture, and rain sensor readings. It also allows manual watering through a push button.
 
+translation:
+
+- [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/standard/readme_id.md)
+
 ## Hardware Requirements
 
 - Arduino board
