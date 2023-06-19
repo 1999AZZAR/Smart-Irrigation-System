@@ -41,31 +41,42 @@ Program akan terus memantau sensor dan memperbarui status modul relay berdasarka
 ## Diagram Alir
 
 ```mermaid
-graph TD
-
-subgraph main
-A[Mulai] --> B[Persiapan]
-B --> C[Perulangan Utama]
-C --> D[Pemeriksaan Tombol]
-C --> E[Pemeriksaan Data Sensor]
-E --> F[Baca Suhu dan Kelembaban]
-F --> H[Pemeriksaan Kesalahan Pembacaan Sensor]
-E --> G[Baca Kelembapan Tanah dan Sensor Hujan]
-G --> H
-H -- Error --> I[Penanganan Kesalahan]
-H -- No Error --> J[Konversi Pembacaan Analog ke Skala 0-100]
-J --> K[Buat Data JSON]
-K --> L[Kirim Data JSON melalui Serial]
-L --> C
-end
-
-subgraph Tombol
-D -- ditekan --> M[Aktifkan Aktuator]
-D -- dilepas --> N[Nonaktifkan Aktuator]
-M --> O[Status Aktuator]
-N --> O
-O --> C
-end
+flowchart TD
+  subgraph Inisialisasi
+    A[Mulai] --> B[Persiapan]
+  end
+  
+  subgraph Loop Utama
+    B --> C[Loop]
+  end
+  
+  subgraph Penanganan Tombol
+    C --> D{Status Tombol}
+    D -- Tombol Ditekan --> E{Status Relay}
+    E -- ON --> F[Aktifkan Relay]
+    F --> C
+    E -- OFF --> G[Nonaktifkan Relay]
+    G --> C
+    D -- Tombol Dilepas --> C
+  end
+  
+  subgraph Data Sensor
+    C --> H{Interval Waktu}
+    H -- Interval Terpenuhi --> I[Periksa Data Sensor]
+    I --> J{Kesalahan Baca Sensor}
+    J -- Ya --> K[Tangani Kesalahan Sensor]
+    K --> C
+    J -- Tidak --> L[Baca Suhu dan Kelembaban]
+    L --> M[Baca Kelembaban Tanah dan Sensor Hujan]
+    M --> N[Konversi Bacaan Analog]
+    N --> O[Buat Data JSON]
+    O --> P[Kirim Data JSON melalui Serial]
+    P --> C
+  end
+  
+  subgraph Penanganan Kesalahan
+    K --> C
+  end
 ```
 
 ## Penyesuaian
