@@ -7,8 +7,8 @@ void setup() {
 void loop() {
   float temperature = random(0, 101);
   float humidity = random(0, 101);
-  int soilMoisture = random(0, 101);
-  int rainSensor = random(0, 101);
+  float soilMoisture = random(0, 101);
+  float rainSensor = random(0, 101);
 
   // Create JSON data
   DynamicJsonDocument jsonDoc(256);
