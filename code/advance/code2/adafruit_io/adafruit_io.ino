@@ -44,7 +44,7 @@ void loop() {
     Serial.println(jsonStr);
   }
 
-  mqtt.processPackets(100);
+  mqtt.processPackets(200);
   mqtt.ping();
 }
 
