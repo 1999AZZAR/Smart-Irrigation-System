@@ -10,6 +10,9 @@
 #define DHT_TYPE DHT11
 #define DHT_PIN 5
 
+unsigned long previousMillis = 0;
+const long interval = 1000;
+
 DHT dht(DHT_PIN, DHT_TYPE);
 
 void setup() {
@@ -22,7 +25,13 @@ void setup() {
 
 void loop() {
   checkButton();
-  checkSensorData();
+
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+    checkSensorData();
+  }
 }
 
 void checkButton() {
@@ -62,15 +71,20 @@ void checkSensorData() {
   rainSensor = map(rainSensor, 0, 1023, 0, 100);
 
   // Create JSON data
-  StaticJsonDocument<128> jsonDoc;
-  jsonDoc["temperature"] = temperature;
-  jsonDoc["humidity"] = humidity;
-  jsonDoc["soil_moisture"] = soilMoisture;
-  jsonDoc["rain_sensor"] = rainSensor;
+  DynamicJsonDocument jsonDoc(256);
 
-  // Send JSON data over serial
-  serializeJson(jsonDoc, Serial);
-  Serial.println();
+  // Populate the JSON document
+  jsonDoc["temperature"] = String(temperature);
+  jsonDoc["humidity"] = String(humidity);
+  jsonDoc["soil_moisture"] = String(soilMoisture);
+  jsonDoc["rain_sensor"] = String(rainSensor);
+
+  // Serialize the JSON document to a string
+  String jsonString;
+  serializeJson(jsonDoc, jsonString);
+
+  // Send the JSON data over serial
+  Serial.println(jsonString);
 }
 
 void handleSensorError() {
