@@ -2,6 +2,10 @@
 
 This is a simple Arduino sketch that generates random sensor data and sends it as JSON-formatted output over the serial port. The code utilizes the ArduinoJson library to create JSON objects and the Serial library to send the data.
 
+translation:
+
+- [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code1/simulation/readme_id.md)
+
 ### Hardware Requirements
 
 - Arduino Uno or compatible board
