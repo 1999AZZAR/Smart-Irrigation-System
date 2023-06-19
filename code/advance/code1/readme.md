@@ -44,31 +44,42 @@ The program will continuously monitor the sensors and update the relay module's 
 ## Flowchart
 
 ```mermaid
-graph TD
-
-subgraph main
-A[Start] --> B[Setup]
-B --> C[Main Loop]
-C --> D[Check Button]
-C --> E[Check Sensor Data]
-E --> F[Read Temperature and Humidity]
-F --> H[Check Sensor Reading Errors]
-E --> G[Read Soil Moisture and Rain Sensor]
-G --> H
-H -- Error --> I[Handle Error]
-H -- No Error --> J[Convert Analog Readings to 0-100 Scale]
-J --> K[Create JSON Data]
-K --> L[Send JSON Data over Serial]
-L --> C
-end
-
-subgraph Button
-D -- pressed --> M[Activate Actuator]
-D -- released --> N[Deactivate Actuator]
-M --> O[Actuator Status]
-N --> O
-O --> C
-end
+flowchart TD
+  subgraph Initialization
+    A[Start] --> B[Setup]
+  end
+  
+  subgraph Main Loop
+    B --> C[Loop]
+  end
+  
+  subgraph Button Handling
+    C --> D{Button State}
+    D -- Button Pressed --> E{Relay State}
+    E -- ON --> F[Activate Relay]
+    F --> C
+    E -- OFF --> G[Deactivate Relay]
+    G --> C
+    D -- Button Released --> C
+  end
+  
+  subgraph Sensor Data
+    C --> H{Time Interval}
+    H -- Interval Reached --> I[Check Sensor Data]
+    I --> J{Sensor Reading Errors}
+    J -- Yes --> K[Handle Sensor Error]
+    K --> C
+    J -- No --> L[Read Temperature and Humidity]
+    L --> M[Read Soil Moisture and Rain Sensor]
+    M --> N[Convert Analog Readings]
+    N --> O[Create JSON Data]
+    O --> P[Send JSON Data over Serial]
+    P --> C
+  end
+  
+  subgraph Error Handling
+    K --> C
+  end
 ```
 
 ## Customization
