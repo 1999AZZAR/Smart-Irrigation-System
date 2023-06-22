@@ -145,6 +145,49 @@ O --> P
 P --> D
 ```
 
+## UML diagrams
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant A as "Start"
+    participant B as "Setup"
+    participant C as "Blynk"
+    participant D as "Main Loop"
+    participant E as "Button"
+    participant F as "Sensor Data"
+    participant G as "Temperature and Humidity Sensor"
+    participant H as "Soil Moisture and Rain Sensor"
+    participant I as "Error Handling"
+    participant J as "Handle Error"
+    participant K as "Analog Readings Conversion"
+    participant L as "Data Processing"
+    participant M as "Serial Communication / Blynk Update"
+    participant N as "Actuator Activation"
+    participant O as "Actuator Deactivation"
+    participant P as "Actuator Status"
+
+    A ->> B: "Setup"
+    B ->> C: "Connect to Blynk for advanced version"
+    C ->> D: "Main Loop"
+    D ->> E: "Check Button for standard version"
+    D ->> F: "Check Sensor Data"
+    F ->> G: "Read Temperature and Humidity"
+    G ->> I: "Check Sensor Reading Errors"
+    I -- Error --> J: "Handle Error"
+    I -- No Error --> K: "Convert Analog Readings to 0-100 Scale"
+    K ->> L: "Create JSON Data for standard version / Process Sensor Data for advanced version"
+    L ->> M: "Send JSON Data over Serial for standard version / Update Blynk Virtual Pins for advanced version"
+    M ->> D: "Main Loop"
+    F ->> H: "Read Soil Moisture and Rain Sensor"
+    H ->> I: "Check Sensor Reading Errors"
+    E -- Pressed --> N: "Activate Actuator for standard version"
+    E -- Released --> O: "Deactivate Actuator for standard version"
+    N ->> P: "Actuator Status for standard version"
+    O ->> P: "Actuator Status for standard version"
+    P ->> D: "Main Loop"
+```
+
 ## Troubleshooting
 
 If you encounter any issues while using the smart irrigation system, consider the following troubleshooting steps:
