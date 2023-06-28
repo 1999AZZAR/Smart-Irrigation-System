@@ -25,28 +25,37 @@ Adafruit_MQTT_Publish rain(&mqtt, AIO_USERNAME "/feeds/irrigation.rainSensor");
 Adafruit_MQTT_Subscribe bt1 = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/irrigation.relay1");
 Adafruit_MQTT_Subscribe bt2 = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/irrigation.relay2");
 
+bool mqttConnected = false;
+
 void setup() {
-  for (int i = 0; i < 2; i++) {
-    pinMode(RELAY_PIN[i], OUTPUT);
-  }
   Serial.begin(115200);
   softSerial.begin(9600);
 
   connectToWiFi();
-
   connectToMQTT();
+
+  for (int i = 0; i < 2; i++) {
+    pinMode(RELAY_PIN[i], OUTPUT);
+  }
 }
 
 void loop() {
+  if (WiFi.status() != WL_CONNECTED) {
+    connectToWiFi();
+    connectToMQTT();
+  }
+
+  if (mqttConnected) {
+    mqtt.processPackets(200);
+    mqtt.ping();
+    onRelayChange();
+  }
+
   if (softSerial.available()) {
     String jsonStr = softSerial.readStringUntil('\n');
     deserializeAndPublish(jsonStr);
     Serial.println(jsonStr);
   }
-
-  mqtt.processPackets(200);
-  mqtt.ping();
-  onRelay2Change(); // Check for relay state changes
 }
 
 void connectToWiFi() {
@@ -60,16 +69,16 @@ void connectToWiFi() {
 
 void connectToMQTT() {
   int8_t ret;
+  uint32_t connectDelay = 5000;
 
   Serial.print("Connecting to MQTT... ");
-
   while ((ret = mqtt.connect()) != 0) {
     Serial.println(mqtt.connectErrorString(ret));
     Serial.println("Retrying MQTT connection in 5 seconds...");
-    mqtt.disconnect();
-    delay(5000);
+    delay(connectDelay);
+    connectDelay += 5000; // Increment the delay for each retry
   }
-
+  mqttConnected = true;
   Serial.println("MQTT connected!");
 }
 
@@ -99,11 +108,7 @@ void deserializeAndPublish(const String& jsonStr) {
   printSensorData("Rain", rainSensor);
 }
 
-void relaySwitch(int index, int pinValue) {
-  digitalWrite(RELAY_PIN[index], pinValue);
-}
-
-void onRelay2Change() {
+void onRelayChange() {
   Adafruit_MQTT_Subscribe *subscription;
   while ((subscription = mqtt.readSubscription(5000))) {
     if (subscription == &bt1) {
@@ -121,7 +126,11 @@ void onRelay2Change() {
   }
 }
 
-void publishValue(Adafruit_MQTT_Publish & feed, float value) {
+void relaySwitch(int index, int pinValue) {
+  digitalWrite(RELAY_PIN[index], pinValue);
+}
+
+void publishValue(Adafruit_MQTT_Publish &feed, float value) {
   if (!feed.publish(value)) {
     Serial.println("Failed to publish data to MQTT topic");
   }
