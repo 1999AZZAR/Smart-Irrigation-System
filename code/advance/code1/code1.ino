@@ -11,7 +11,7 @@
 #define DHT_PIN 5
 
 unsigned long previousMillis = 0;
-const long interval = 1000;
+const long interval = 1500;
 
 DHT dht(DHT_PIN, DHT_TYPE);
 
