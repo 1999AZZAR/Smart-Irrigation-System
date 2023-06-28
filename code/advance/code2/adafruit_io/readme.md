@@ -2,6 +2,10 @@
 
 This code implements an MQTT-based irrigation system using an ESP8266 microcontroller. The system collects sensor data from various sources and publishes it to Adafruit IO, an MQTT broker. Additionally, it subscribes to MQTT topics to receive commands for controlling relays.
 
+translation:
+
+- [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/code2/adafruit_io/readme_id.md)
+  
 ## Prerequisites
 To use this code, you will need the following:
 
