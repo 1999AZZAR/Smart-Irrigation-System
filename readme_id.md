@@ -3,6 +3,7 @@
 Kode ini mengimplementasikan sebuah sistem irigasi cerdas menggunakan papan Arduino dan berbagai sensor. Sistem ini secara otomatis mengontrol aktuator untuk menyiram tanaman berdasarkan kondisi yang telah ditentukan, seperti suhu, kelembaban, kelembapan tanah, dan pembacaan sensor hujan. Sistem juga memungkinkan penyiraman manual melalui tombol tekan dan menyediakan kontrol jarak jauh menggunakan platform IoT Blynk.
 
 versi:
+
 - [standar](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/standard/readme_id.md)
 - [lanjutan](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/readme_id.md)
 
@@ -62,9 +63,7 @@ Kode ini melakukan fungsi-fungsi berikut:
 
 ### Perulangan Utama
 
-- Memeriksa status tombol tekan (untuk versi standar) menggunakan fungsi `check
-
-Button()`.
+- Memeriksa status tombol tekan (untuk versi standar) menggunakan fungsi `checkButton()`.
 - Memeriksa data sensor pada interval tertentu menggunakan fungsi `checkSensors()`.
 
 ### Pemeriksaan Data Sensor
@@ -157,3 +156,11 @@ Untuk versi lanjutan, Anda dapat memodifikasi pin virtual dan widget di aplikasi
 Kode ini diasumsikan menggunakan sensor DHT11 untuk suhu dan kelembaban, dan sensor analog untuk kelembapan tanah dan deteksi hujan (untuk versi standar). Jika Anda menggunakan sensor yang berbeda, pastikan untuk memodifikasi kode sesuai dan menggunakan library dan konfigurasi pin yang sesuai.
 
 Kode ini disediakan sebagai titik awal dan mungkin memerlukan modifikasi dan perbaikan untuk sesuai dengan aplikasi dan lingkungan spesifik Anda.
+
+## Gambar - gambar
+
+- ![flow](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/flow.png)
+- ![koneksi](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/connection.png)
+- pinout:
+  - ![arduino](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/arduino_pinout.png)
+  - ![esp8266](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/ep8266_pinout.png)
