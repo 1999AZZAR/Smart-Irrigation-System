@@ -163,4 +163,4 @@ Kode ini disediakan sebagai titik awal dan mungkin memerlukan modifikasi dan per
 - ![koneksi](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/connection.png)
 - pinout:
   - ![arduino](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/arduino_pinout.png)
-  - ![esp8266](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/ep8266_pinout.png)
+  - ![esp8266](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/esp8266_pinout.png)
