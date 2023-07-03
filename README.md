@@ -11,19 +11,19 @@ translation:
 
 - [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/readme_id.md)
 
-## Table Of Contents
+# Table Of Contents
 
-1. [Hardware Requirements](## Hardware Requirements)
-2. [Software Dependencies](## Software Dependencies)
-3. [Pin Configuration](## Pin Configuration)
-4. [Functionality](## Functionality)
-5. [Usage](## Usage)
-6. [Flowchart](## Flowchart)
-7. [UML diagrams](## UML diagrams)
-8. [Troubleshooting](## Troubleshooting)
-9. [Customization](## Customization)
-10. [Note](## Note)
-11. [License](## License)
+1. [Hardware Requirements](#Hardware-Requirements)
+2. [Software Dependencies](#Software-Dependencies)
+3. [Pin Configuration](#Pin-Configuration)
+4. [Functionality](#Functionality)
+5. [Usage](#Usage)
+6. [Flowchart](#Flowchart)
+7. [UML diagrams](#UML-diagrams)
+8. [Troubleshooting](#Troubleshooting)
+9. [Customization](#Customization)
+10. [Note](#Note)
+11. [License](#License)
 12. [pictures](https://github.com/1999AZZAR/Smart-Irrigation-System/tree/master/pic#readme)
 
 ## Hardware Requirements
