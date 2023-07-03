@@ -3,11 +3,28 @@
 This repository contains the code implementation for a smart irrigation system using an Arduino board and various sensors. The system automatically controls the actuator to water plants based on predefined conditions such as temperature, humidity, soil moisture, and rain sensor readings. It also allows manual watering through a push button and provides remote control using the Blynk IoT platform.
 
 version:
+
 - [standart](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/standard/readme.md)
 - [advance](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/readme.md)
 
 translation:
+
 - [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/readme_id.md)
+
+## Table Of Contents
+
+1. [Hardware Requirements](## Hardware Requirements)
+2. [Software Dependencies](## Software Dependencies)
+3. [Pin Configuration](## Pin Configuration)
+4. [Functionality](## Functionality)
+5. [Usage](## Usage)
+6. [Flowchart](## Flowchart)
+7. [UML diagrams](## UML diagrams)
+8. [Troubleshooting](## Troubleshooting)
+9. [Customization](## Customization)
+10. [Note](## Note)
+11. [License](## License)
+12. [pictures](https://github.com/1999AZZAR/Smart-Irrigation-System/tree/master/pic#readme)
 
 ## Hardware Requirements
 
@@ -84,9 +101,7 @@ The code provides the following functionality:
 
 ### Watering Conditions Checking
 
-- If manual watering
-
- is active, bypasses the conditions and keeps the actuator activated.
+- If manual watering is active, bypasses the conditions and keeps the actuator activated.
 - Otherwise, checks the following conditions:
   - If the soil moisture is below 40 and no rain is detected, activates the actuator.
   - If the humidity is below 50 and the temperature is above 30, activates the actuator.
