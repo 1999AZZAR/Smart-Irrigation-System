@@ -3,6 +3,7 @@
 Kode ini mengimplementasikan sistem irigasi berbasis MQTT menggunakan mikrokontroler ESP8266. Sistem ini mengumpulkan data sensor dari berbagai sumber dan mempublikasikannya ke Adafruit IO, sebuah broker MQTT. Selain itu, sistem juga melakukan subscribe ke topik-topik MQTT untuk menerima perintah kontrol relay.
 
 ## Persyaratan
+
 Untuk menggunakan kode ini, Anda akan membutuhkan hal-hal berikut:
 
 - Arduino IDE dengan dukungan board ESP8266
@@ -12,6 +13,7 @@ Untuk menggunakan kode ini, Anda akan membutuhkan hal-hal berikut:
 - Perpustakaan ArduinoJson
 
 ## Instalasi dan Konfigurasi
+
 1. Pasang perpustakaan yang diperlukan yang tercantum di atas.
 2. Gantikan tempat-tempat kosong dalam kode dengan konfigurasi spesifik Anda:
    - `YOUR_AIO_USERNAME` dengan username Adafruit IO Anda.
@@ -23,6 +25,7 @@ Untuk menggunakan kode ini, Anda akan membutuhkan hal-hal berikut:
 5. Buka serial monitor untuk memantau keluaran sistem.
 
 ## Penggunaan
+
 1. ESP8266 terhubung ke jaringan Wi-Fi yang ditentukan saat diaktifkan.
 2. Kemudian, ESP8266 membangun koneksi ke broker MQTT Adafruit IO menggunakan kredensial yang diberikan.
 3. ESP8266 mendengarkan data dari sensor melalui koneksi serial perangkat lunak dan mempublikasikannya ke Adafruit IO dengan melakukan deserialisasi data JSON.
@@ -32,6 +35,7 @@ Untuk menggunakan kode ini, Anda akan membutuhkan hal-hal berikut:
 7. Setelah menerima pesan pada topik-topik tersebut, ESP8266 mengubah keadaan relay yang ditentukan.
 
 ## Diagram Alur
+
 ```mermaid
 graph TD
 subgraph koneksi
@@ -87,18 +91,22 @@ end
 ```
 
 ## Penyesuaian
+
 - Anda dapat mengubah pin yang digunakan untuk kontrol relay dengan mengubah nilai dalam array `RELAY_PIN`.
 - Untuk menambahkan atau mengubah data sensor yang dipublikasikan, sesuaikan deserialisasi JSON dalam fungsi `deserializeAndPublish` dan deklarasi topik MQTT yang sesuai.
 - Sensor atau aktuator tambahan dapat diintegrasikan dengan memperluas logika kode secara tepat.
 
 ## Troubleshooting
+
 - Jika Anda mengalami masalah koneksi, pastikan kredensial jaringan Wi-Fi dan kredensial MQTT Adafruit IO Anda benar.
 - Periksa pengkabelan ESP8266 dan relay Anda untuk memastikan bahwa mereka terhubung dengan benar.
 - Verifikasi bahwa topik-topik MQTT dan format data sesuai dengan setup yang diinginkan.
 
 ## Lisensi
+
 Kode ini dirilis di bawah [Lisensi MIT](https://opensource.org/licenses/MIT). Anda bebas untuk memodifikasi dan mendistribusikannya sesuai dengan kebutuhan Anda.
 
 ## Pengakuan
+
 - Kode ini dikembangkan berdasarkan contoh-contoh perpustakaan MQTT Adafruit dan dokumentasi platform ESP8266.
   

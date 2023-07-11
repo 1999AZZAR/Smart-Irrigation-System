@@ -1,4 +1,6 @@
-## Pictures
+# Pictures
+
+flow:
 
 - ![flow](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/flow.png)
 - ![koneksi](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/pic/connection.png)
