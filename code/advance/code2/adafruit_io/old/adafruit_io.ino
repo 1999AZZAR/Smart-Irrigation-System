@@ -1,3 +1,10 @@
+/********************************************************
+*        copyright : github.com/1999azzar               *
+*        year      : 2023                               *
+*                                                       *
+*        Project   : code2.ino(esp8266)                 *
+*********************************************************/
+
 #include <ESP8266WiFi.h>
 #include <SoftwareSerial.h>
 #include <Adafruit_MQTT_Client.h>

@@ -1,3 +1,10 @@
+/********************************************************
+*        copyright : github.com/1999azzar               *
+*        year      : 2023                               *
+*                                                       *
+*        Project   : code1.ino(arduino)                 *
+*********************************************************/
+
 #include <DHT.h>
 #include <ArduinoJson.h>
 

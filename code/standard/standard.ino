@@ -1,3 +1,10 @@
+/********************************************************
+*        copyright : github.com/1999azzar               *
+*        year      : 2023                               *
+*                                                       *
+*        Project   : standart.ino(arduino)              *
+*********************************************************/
+
 #include <DHT.h>
 
 #define DHTPIN 2 // Pin connected to DHT11 sensor
