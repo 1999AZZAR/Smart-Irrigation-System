@@ -4,68 +4,68 @@ This repository contains the code implementation for a smart irrigation system u
 
 version:
 
-- [standart](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/standard/readme.md)
-- [advance](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/code/advance/readme.md)
+1. [standart](code/standard/)
+2. [advance](code/advance/)
 
 translation:
 
-- [indonesian](https://github.com/1999AZZAR/Smart-Irrigation-System/blob/master/readme_id.md)
+* [indonesian](readme\_id.md)
 
 ## Table Of Contents
 
-1. [Hardware Requirements](#hardware-requirements)
-2. [Software Dependencies](#software-dependencies)
-3. [Pin Configuration](#pin-configuration)
-4. [Functionality](#functionality)
-5. [Usage](#usage)
-6. [Flowchart](#flowchart)
-7. [UML diagrams](#uml-diagrams)
-8. [Troubleshooting](#troubleshooting)
-9. [Customization](#customization)
-10. [Note](#note)
-11. [License](#license)
+1. [Hardware Requirements](./#hardware-requirements)
+2. [Software Dependencies](./#software-dependencies)
+3. [Pin Configuration](./#pin-configuration)
+4. [Functionality](./#functionality)
+5. [Usage](./#usage)
+6. [Flowchart](./#flowchart)
+7. [UML diagrams](./#uml-diagrams)
+8. [Troubleshooting](./#troubleshooting)
+9. [Customization](./#customization)
+10. [Note](./#note)
+11. [License](./#license)
 12. [pictures](https://github.com/1999AZZAR/Smart-Irrigation-System/tree/master/pic#readme)
 
 ## Hardware Requirements
 
 To build and run the smart irrigation system, you will need the following hardware components:
 
-- Arduino board
-- DHT11 temperature and humidity sensor
-- Soil moisture sensor
-- Rain sensor
-- Relay module (for standard version)
-- Dual relay module (for advanced version)
-- Push button (for standard version)
-- ESP8266-based board (e.g., NodeMCU) (for advanced version)
-- Jumper wires
-- Breadboard (optional)
+* [ ] Arduino board
+* [ ] DHT11 temperature and humidity sensor
+* [ ] Soil moisture sensor
+* [ ] Rain sensor
+* [ ] Relay module (for standard version)
+* [ ] Dual relay module (for advanced version)
+* [ ] Push button (for standard version)
+* [ ] ESP8266-based board (e.g., NodeMCU) (for advanced version)
+* [ ] Jumper wires
+* [ ] Breadboard (optional)
 
 ## Software Dependencies
 
 The code relies on the following libraries. Make sure they are installed in your Arduino IDE before uploading the code to the Arduino board:
 
-- DHT library: This library provides functions to read temperature and humidity from the DHT11 sensor.
-- Blynk library (for advanced version)
-- ArduinoJson library (for advanced version)
+* [ ] DHT library: This library provides functions to read temperature and humidity from the DHT11 sensor.
+* [ ] Blynk library (for advanced version)
+* [ ] ArduinoJson library (for advanced version)
 
 ## Pin Configuration
 
 For the standard version, make the following connections:
 
-- DHT11 sensor: Connect the sensor data pin to digital pin 2 (DHTPIN).
-- Soil moisture sensor: Connect the sensor output pin to analog pin A0 (soilMoisturePin).
-- Rain sensor: Connect the sensor output pin to analog pin A1 (rainSensorPin).
-- Relay module: Connect the relay control pin to digital pin 9 (relayPin).
-- Push button: Connect one end of the button to digital pin 3 (buttonPin), and the other end to ground.
+* DHT11 sensor: Connect the sensor data pin to digital pin 2 (DHTPIN).
+* Soil moisture sensor: Connect the sensor output pin to analog pin A0 (soilMoisturePin).
+* Rain sensor: Connect the sensor output pin to analog pin A1 (rainSensorPin).
+* Relay module: Connect the relay control pin to digital pin 9 (relayPin).
+* Push button: Connect one end of the button to digital pin 3 (buttonPin), and the other end to ground.
 
 For the advanced version, make the following connections:
 
-- DHT11 sensor: Connect the sensor data pin to digital pin 2 (DHTPIN).
-- Soil moisture sensor: Connect the sensor output pin to analog pin A0 (soilMoisturePin).
-- Rain sensor: Connect the sensor output pin to analog pin A1 (rainSensorPin).
-- Dual relay module: Connect the relay control pins to digital pins 9 and 10 (relay1Pin, relay2Pin).
-- ESP8266-based board: Connect the board to your computer using a USB cable.
+* DHT11 sensor: Connect the sensor data pin to digital pin 2 (DHTPIN).
+* Soil moisture sensor: Connect the sensor output pin to analog pin A0 (soilMoisturePin).
+* Rain sensor: Connect the sensor output pin to analog pin A1 (rainSensorPin).
+* Dual relay module: Connect the relay control pins to digital pins 9 and 10 (relay1Pin, relay2Pin).
+* ESP8266-based board: Connect the board to your computer using a USB cable.
 
 Please ensure that you have made the necessary hardware connections before running the code.
 
@@ -75,44 +75,44 @@ The code provides the following functionality:
 
 ### Setup
 
-- Initializes the serial communication at a baud rate of 9600.
-- Configures the relay pin(s) and button pin (for standard version) as output and input, respectively.
-- Begins communication with the DHT11 sensor.
-- Connects to the Blynk server (for advanced version).
+1. Initializes the serial communication at a baud rate of 9600.
+2. Configures the relay pin(s) and button pin (for standard version) as output and input, respectively.
+3. Begins communication with the DHT11 sensor.
+4. Connects to the Blynk server (for advanced version).
 
 ### Main Loop
 
-- Checks the state of the push button (for standard version) using the `checkButton()` function.
-- Checks the sensor data at regular intervals using the `checkSensors()` function.
+* Checks the state of the push button (for standard version) using the `checkButton()` function.
+* Checks the sensor data at regular intervals using the `checkSensors()` function.
 
 ### Sensor Data Checking
 
-- Reads temperature, humidity, soil moisture, and rain sensor values.
-- Checks for any errors in reading the sensor data.
-- Creates a JSON string containing the sensor readings and sends it over the serial port (for standard version).
-- Sends the sensor data to the Blynk server (for advanced version).
-- Calls the `checkWateringConditions()` function to determine if the actuator should be activated or deactivated.
+* Reads temperature, humidity, soil moisture, and rain sensor values.
+* Checks for any errors in reading the sensor data.
+* Creates a JSON string containing the sensor readings and sends it over the serial port (for standard version).
+* Sends the sensor data to the Blynk server (for advanced version).
+* Calls the `checkWateringConditions()` function to determine if the actuator should be activated or deactivated.
 
 ### Push Button Checking (for standard version)
 
-- Reads the state of the push button.
-- If the button is pressed and manual watering is not active, activates the actuator.
-- If the button is released and manual watering is active, deactivates the actuator.
+* Reads the state of the push button.
+* If the button is pressed and manual watering is not active, activates the actuator.
+* If the button is released and manual watering is active, deactivates the actuator.
 
 ### Watering Conditions Checking
 
-- If manual watering is active, bypasses the conditions and keeps the actuator activated.
-- Otherwise, checks the following conditions:
-  - If the soil moisture is below 40 and no rain is detected, activates the actuator.
-  - If the humidity is below 50 and the temperature is above 30, activates the actuator.
-  - If the soil moisture is equal to or above 75 or rain is detected, deactivates the actuator.
+* If manual watering is active, bypasses the conditions and keeps the actuator activated.
+* Otherwise, checks the following conditions:
+  * If the soil moisture is below 40 and no rain is detected, activates the actuator.
+  * If the humidity is below 50 and the temperature is above 30, activates the actuator.
+  * If the soil moisture is equal to or above 75 or rain is detected, deactivates the actuator.
 
 ### Actuator Control
 
-- Activates the actuator by setting the relay pin(s) to HIGH (for standard version).
-- Deactivates the actuator by setting the relay pin(s) to LOW (for standard version).
-- Controls the actuator using virtual pin V4 on the Blynk app (for advanced version).
-- Sends a message over the serial port (for standard version) or to the Blynk app (for advanced version) indicating the activation or deactivation of the actuator.
+* Activates the actuator by setting the relay pin(s) to HIGH (for standard version).
+* Deactivates the actuator by setting the relay pin(s) to LOW (for standard version).
+* Controls the actuator using virtual pin V4 on the Blynk app (for advanced version).
+* Sends a message over the serial port (for standard version) or to the Blynk app (for advanced version) indicating the activation or deactivation of the actuator.
 
 ## Usage
 
@@ -207,9 +207,9 @@ sequenceDiagram
 
 If you encounter any issues while using the smart irrigation system, consider the following troubleshooting steps:
 
-- If you encounter errors while reading the sensor data, check the connections and ensure that the sensors are functioning correctly.
-- If the actuator is not activating or deactivating as expected (for standard version), verify the relay module's connections and ensure that it is compatible with the actuator.
-- For troubleshooting the advanced version, refer to the Blynk documentation and community resources.
+* If you encounter errors while reading the sensor data, check the connections and ensure that the sensors are functioning correctly.
+* If the actuator is not activating or deactivating as expected (for standard version), verify the relay module's connections and ensure that it is compatible with the actuator.
+* For troubleshooting the advanced version, refer to the Blynk documentation and community resources.
 
 ## Customization
 
@@ -229,4 +229,4 @@ This code is provided as a starting point and may require modifications and enha
 
 This code is released under the
 
- [MIT License](https://opensource.org/licenses/MIT). Feel free to modify and use it for your projects.
+[MIT License](https://opensource.org/licenses/MIT). Feel free to modify and use it for your projects.
