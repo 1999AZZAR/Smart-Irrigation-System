@@ -1,5 +1,7 @@
 # Smart Irrigation System
 
+[![CodeFactor](https://www.codefactor.io/repository/github/1999azzar/smart-irrigation-system/badge)](https://www.codefactor.io/repository/github/1999azzar/smart-irrigation-system)
+
 This repository contains the code implementation for a smart irrigation system using an Arduino board and various sensors. The system automatically controls the actuator to water plants based on predefined conditions such as temperature, humidity, soil moisture, and rain sensor readings. It also allows manual watering through a push button and provides remote control using the Blynk IoT platform.
 
 version:
