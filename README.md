@@ -227,6 +227,17 @@ This code assumes the use of a DHT11 sensor for temperature and humidity, and an
 
 This code is provided as a starting point and may require modifications and enhancements to suit your specific application and environment.
 
+## Support
+
+You can support me by buy me a coffee if u like to.
+
+<div align="left">
+<!--   <h4>And you can also support me by <a href="https://www.buymeacoffee.com/azzar" target="_blank">buying me coffee</a></h4> -->
+  <a href="https://www.buymeacoffee.com/azzar" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 42px !important;width: 151.9px !important; margin-top: 50px !important;">
+  </a>
+</div>
+
 ## License
 
 This code is released under the
